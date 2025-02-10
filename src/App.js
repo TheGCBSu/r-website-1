@@ -1,22 +1,28 @@
-import logo from './logo.svg';
+import Home from './home';
+import LoginForm from './loginForm'
 import './App.css';
 import React, { useState} from 'react';
-import Counter from "./counter"
-import Text from "./text"
+import axios from 'axios';
+import Grid from '@mui/material/Grid';
+
 function App() {
-  const [name, setName]=useState("")
-  const handleChange=(event)=>{
-    setName(event.target.value);
-  };
+
+  const [isLoggedIn, setIsLoggedIn]=useState(false);
+
+  const handleLogin = async(email, password) =>{
+    try{
+      const response = await
+      axios.post("http://example.com/api/login", {email,password});
+      if(response.data.token){
+        setIsLoggedIn(true);
+      }
+      }catch(err){
+        console.log("Login Failed",err);
+    }
+  }
   return (
     <div>
-      <h1 className='text-center text-primary'>Simple React App</h1>
-      <Text val={name}/>
-      <Counter/>
-      <div className='text-center'>
-      <input type="text" onChange={handleChange}/>
-
-      </div>
+      {isLoggedIn ? <Home />:<LoginForm onLogin={handleLogin}/>}
     </div>
   );
 }
