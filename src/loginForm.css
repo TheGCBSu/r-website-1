@@ -1,0 +1,20 @@
+.submit-btn {
+  position: absolute; /* Allows it to move */
+  transition: transform 0.2s, ease-in-out;
+}
+
+.corner-top-left {
+  transform: translate(-40px, -40px);
+}
+
+.corner-top-right {
+  transform: translate(40px, -40px);
+}
+
+.corner-bottom-left {
+  transform: translate(-40px, 40px);
+}
+
+.corner-bottom-right {
+  transform: translate(40px, 40px);
+}
